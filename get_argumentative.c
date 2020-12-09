@@ -11,14 +11,17 @@ char ** parse_args( char * line ){
     int n = strlen(line);
 
     char ** array_pointers = malloc(sizeof(char *) * n);
-
-    int i;
-    for(int i = 0; i < n; i++){
-        array_pointers[i] = &line[i];
-        printf("%p, ", array_pointers[i]);
+    char *command;
+    int i = 0;
+    while(line) {
+        command = strsep(&line, " ");
+        array_pointers[i] = command;
+        i++;
     }
     printf("\n");
 
+    free(array_pointers);
+
     return array_pointers;
 
-}
+}    
